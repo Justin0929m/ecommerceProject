@@ -97,7 +97,7 @@ module.exports = {
 
   // DELETE
 
-  async deleteProduct(prodID) {
+  async deleteProduct(req, res) {
     try {
       const { prodID } = req.params;
       const result = Products.deleteProduct(prodID);
