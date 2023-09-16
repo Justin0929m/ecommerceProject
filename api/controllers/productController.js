@@ -50,7 +50,7 @@ module.exports = {
   async fetchProduct(req, res) {
     try {
       const { prodID } = req.params;
-      const result = Products.fetchProduct(prodID);
+      const result = await Products.fetchProduct(prodID);
 
       if (result.length === 0) {
         return res.status(404).json({
@@ -59,13 +59,16 @@ module.exports = {
         });
       }
 
-      return res.status(200).json({
-        status: 200,
-        msg: "Product successfully fetched",
+      return res.json({
+        status: res.statusCode,
         result,
       });
     } catch (error) {
-      console.log(error);
+      console.error(
+        "An error occurred while trying to fetch the product:",
+        error
+      );
+      res.status(500).json({ error: "Failed to fetch the product" });
     }
   },
 
@@ -92,27 +95,27 @@ module.exports = {
     } catch (error) {}
   },
 
-   // DELETE 
+  // DELETE
 
-   async deleteProduct(prodID){
+  async deleteProduct(prodID) {
     try {
-        const { prodID } = req.params
-        const result = Products.deleteProduct(prodID)
+      const { prodID } = req.params;
+      const result = Products.deleteProduct(prodID);
 
-        if(!result){
-            return res.status(400).json({
-              state: 400,
-              msg: "No product was found",
-            });
-        }
-
-        return res.status(200).json({
-          status: 200,
-          msg: "Product has been deleted",
-          result,
+      if (!result) {
+        return res.status(400).json({
+          state: 400,
+          msg: "No product was found",
         });
+      }
+
+      return res.status(200).json({
+        status: 200,
+        msg: "Product has been deleted",
+        result,
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-   }
+  },
 };
