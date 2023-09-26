@@ -18,7 +18,7 @@ class Products {
 
   static async fetchProducts() {
     try {
-      const query = `SELECT prodID, prodName, prodDesc, prodImg, amount, quantity, category FROM Products`;
+      const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products`;
       const [results] = await db.query(query);
 
       return results;
@@ -29,7 +29,7 @@ class Products {
 
   static async fetchProduct(prodID) {
     try {
-      const query = `SELECT prodID, prodName, prodDesc, prodImg, amount, quantity, category FROM Products WHERE prodID = ?`;
+      const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products WHERE prodID = ?`;
       const [result] = await db.query(query, [prodID]);
 
       return result;
