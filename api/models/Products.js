@@ -29,7 +29,7 @@ class Products {
 
   static async featuredProducts() {
     try {
-      const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products LIMIT 5`;
+      const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products LIMIT 4`;
       const [results] = await db.query(query);
 
       return results;
