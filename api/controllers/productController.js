@@ -118,4 +118,27 @@ module.exports = {
       console.log(error);
     }
   },
+
+  // Featured Products
+
+  async featuredProducts(req, res) {
+    try {
+      const results = await Products.featuredProducts();
+
+      if (results.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          msg: "Products not found",
+        });
+      }
+
+      return res.status(200).json({
+        status: 200,
+        msg: "Products successfully fetched",
+        results,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

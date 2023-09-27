@@ -27,6 +27,17 @@ class Products {
     }
   }
 
+  static async featuredProducts() {
+    try {
+      const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products LIMIT 5`;
+      const [results] = await db.query(query);
+
+      return results;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   static async fetchProduct(prodID) {
     try {
       const query = `SELECT prodID, prodName, prodDesc, prodImg, img1, img2, img3, size, amount, quantity, category FROM Products WHERE prodID = ?`;
@@ -51,14 +62,14 @@ class Products {
     }
   }
 
-  // DELETE 
+  // DELETE
 
-  static async deleteProduct(prodID){
+  static async deleteProduct(prodID) {
     try {
-      const query = `DELETE FROM Products WHERE prodID = ?`
-      const [result] = await db.query(query, [prodID])
+      const query = `DELETE FROM Products WHERE prodID = ?`;
+      const [result] = await db.query(query, [prodID]);
 
-      return result
+      return result;
     } catch (error) {
       console.log(error);
     }
