@@ -11,7 +11,7 @@
         <div class="row gap-3">
           <div class="col d-flex justify-content-center" v-for="item in featuredProducts" :key="item.prodID">
             <div class="card h-100 rounded-0" style="width: 18rem">
-            <img :src="item.prodImg" class="card-img rounded-0" alt="">
+            <img :src="item.prodImg" class="card-img rounded-0" loading="lazy" alt="">
             <div class="card-body d-flex flex-column justify-content-between">
               <h4>{{ item.prodName }}</h4>
               <p>R{{ item.amount }}</p>
@@ -28,7 +28,7 @@
                   <div class="spinner-border" role="status">
                       <span class="visually-hidden">Loading...</span>
                   </div>
-                  <p class="mt-3">Loading</p>
+                  <p class="mt-3">Fetching Products...</p>
               </div>
 
     </section>
